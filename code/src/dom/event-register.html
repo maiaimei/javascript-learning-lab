@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>文档对象模型 - DOM - 事件注册/绑定</title>
+    <style>
+      button {
+        margin: 6px 8px 6px 0;
+        padding: 6px 12px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>事件注册/绑定</h1>
+
+    <h2>事件注册示例（传统方式）</h2>
+    <!-- 行内onclick -->
+    <button id="btn1" onclick="alert('行内onclick注册')">行内onclick注册</button>
+    <!-- DOM 0级：元素.onclick -->
+    <button id="btn3">onclick属性注册</button>
+    <button id="btn5">onclick属性注册（重复绑定会覆盖）</button>
+    <button id="btn7">onclick属性注册（事件移除）</button>
+
+    <h2>事件注册示例（addEventListener）</h2>
+    <!-- DOM 2级：addEventListener -->
+    <button id="btn2">addEventListener注册</button>
+    <button id="btn4">addEventListener注册（可绑定多个事件）</button>
+    <button id="btn6">addEventListener注册（事件移除）</button>
+
+    <script>
+      // 事件注册示例（传统方式）
+      const btn3 = document.getElementById('btn3');
+      btn3.onclick = function () {
+        alert('onclick属性注册');
+      };
+
+      const btn5 = document.getElementById('btn5');
+      btn5.onclick = function () {
+        alert('onclick属性注册');
+      };
+      btn5.onclick = function () {
+        alert('onclick属性注册（重复绑定会覆盖）');
+      };
+
+      const btn7 = document.getElementById('btn7');
+      btn7.onclick = function () {
+        alert('onclick属性注册（事件移除）');
+        // 移除事件
+        btn7.onclick = null;
+      };
+
+      // 事件注册示例（addEventListener）
+      const btn2 = document.getElementById('btn2');
+      btn2.addEventListener('click', function () {
+        alert('addEventListener注册');
+      });
+
+      const btn4 = document.getElementById('btn4');
+      btn4.addEventListener('click', function () {
+        alert('addEventListener注册');
+      });
+      btn4.addEventListener('click', function () {
+        alert('addEventListener注册（可绑定多个事件）');
+      });
+
+      const btn6 = document.getElementById('btn6');
+      btn6.addEventListener('click', handleClick);
+      function handleClick() {
+        alert('addEventListener注册（事件移除）');
+        // 移除事件
+        btn6.removeEventListener('click', handleClick);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>文档对象模型 - DOM - 事件对象</title>
+  </head>
+  <body>
+    <button id="myButton">点击我</button>
+    <p id="output"></p>
+
+    <script>
+      const button = document.getElementById('myButton');
+      const output = document.getElementById('output');
+
+      button.addEventListener('click', function (event) {
+        // 常用属性
+        const eventType = event.type; // 事件类型
+        const targetElement = event.target; // 触发事件的元素
+        const currentTarget = event.currentTarget; // 当前处理事件的元素
+        const isCtrlPressed = event.ctrlKey; // 是否按下了Ctrl键
+
+        // 常用方法
+        event.preventDefault(); // 阻止默认行为（如表单提交）
+        event.stopPropagation(); // 阻止事件冒泡
+
+        // 输出事件信息
+        output.innerHTML = `
+                <strong>事件信息：</strong><br>
+                事件类型: ${eventType}<br>
+                触发元素: ${targetElement.tagName}<br>
+                当前元素: ${currentTarget.tagName}<br>
+                Ctrl键是否按下: ${isCtrlPressed}
+            `;
+      });
+    </script>
+  </body>
+</html>

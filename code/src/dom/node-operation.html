@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>文档对象模型 - DOM - 节点操作</title>
+  </head>
+  <body>
+    <h1>关于DOM操作，我们主要是对元素的操作。主要有创建，增，删，改，查，属性操作和事件操作。</h1>
+    <div id="grandfather">
+      <div id="father">
+        <div id="prev-brother"></div>
+        <div id="son"></div>
+        <div id="next-brother"></div>
+      </div>
+    </div>
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+    <ol>
+      <li>a</li>
+      <li>b</li>
+      <li>c</li>
+    </ol>
+    <script>
+      var divSon = document.querySelector("#son");
+      // 获取父节点
+      console.log(divSon.parentNode); // 只读属性，返回该节点在 DOM 树中的父节点。
+      console.log(divSon.parentElement); // 返回当前节点的父元素节点，如果该元素没有父节点，或者父节点不是一个 DOM 元素，则返回 null。
+
+      // 获取兄弟节点
+      console.log(divSon.previousSibling);
+      console.log(divSon.nextSibling);
+      console.log(divSon.previousElementSibling);
+      console.log(divSon.nextElementSibling);
+
+      // 获取子节点
+      var ul = document.querySelector("ul");
+      console.log(ul.childNodes); // 只读属性，返回一个实时的 NodeList，其中包含给定元素的所有子节点，第一个子节点的索引为 0。子节点包括元素节点、文本节点和注释节点。
+      console.log(ul.children); // 只读属性，返回 一个 Node 的子elements ，是一个动态更新的 HTMLCollection。
+      console.log(ul.firstChild); // 只读属性，返回节点的第一个子节点，如果节点是无子节点，则返回 null。返回的子节点不一定是元素节点。
+      console.log(ul.lastChild); // 只读属性，返回节点的最后一个子节点，如果没有子节点，则返回 null。返回的子节点不一定是元素节点。
+      console.log(ul.firstElementChild); // 只读属性，返回元素的第一个子元素，如果没有子元素，则为 null。
+      console.log(ul.lastElementChild); // 只读属性，返回元素的最后一个子元素，如果没有子元素，则返回 null。
+
+      // 创建元素节点
+      var li4 = document.createElement("li"); // 创建一个具有指定 localName 的 HTMLElement。
+      var li0 = document.createElement('li');
+      var li0Text = document.createTextNode('0'); // 创建新的文本节点。该方法可用于转义 HTML 字符。
+      // 添加元素节点
+      li0.appendChild(li0Text);
+      ul.appendChild(li4); // 将一个节点附加到指定父节点的子节点列表的末尾处。
+      ul.insertBefore(li0, ul.children[0]); // 将一个节点插入到指定父节点的子节点中，并位于参考节点之前。
+
+      // 删除节点 removeChild() 方法会从 DOM 中移除一个子节点，并返回移除的节点。
+
+      // 克隆节点 cloneNode() 方法会返回调用该方法的节点的一个副本。
+    </script>
+  </body>
+</html>
