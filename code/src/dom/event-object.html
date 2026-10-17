@@ -16,7 +16,7 @@
       button.addEventListener('click', function (event) {
         // 常用属性
         const eventType = event.type; // 事件类型
-        const targetElement = event.target; // 触发事件的元素
+        const targetElement = event.target; // 触发事件的元素。注意和this的区别。target返回的是触发事件的对象，this返回的是绑定事件的对象。
         const currentTarget = event.currentTarget; // 当前处理事件的元素
         const isCtrlPressed = event.ctrlKey; // 是否按下了Ctrl键
 
