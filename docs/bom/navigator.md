@@ -1,4 +1,4 @@
-# 📒 Navigator 对象学习笔记（BOM）
+# BOM `navigator` 对象学习笔记
 
 > **说明**：`window.navigator` 用于获取浏览器及运行环境信息，属于 BOM 核心对象。
 > 运行环境：浏览器端（Node.js 中不存在）；部分属性在隐私模式/无痕模式下会被脱敏。
