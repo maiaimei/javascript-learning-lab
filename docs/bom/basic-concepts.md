@@ -93,9 +93,87 @@ ro.observe(document.querySelector('#chart'));
 
 ---
 
-### 定时器之setTimeout/clearTimeout
+### 定时器
 
-### 定时器之setInterval/clearInterval
+#### 定时器之setTimeout/clearTimeout
+
+- **`setTimeout`**：用于延迟执行某段代码，仅执行一次。
+  - 语法：`const timeoutID = setTimeout(callback, delay, ...args);`
+    - `callback`：延迟后执行的函数。
+    - `delay`：延迟时间（毫秒）。
+    - `...args`：传递给 `callback` 的参数。
+  - 返回值：`timeoutID`，可用于清除定时器。
+  - 示例：
+    ```javascript
+    const timeoutID = setTimeout(() => {
+      console.log('延迟 1 秒后执行');
+    }, 1000);
+    ```
+
+- **`clearTimeout`**：用于取消由 `setTimeout` 设置的定时器。
+  - 语法：`clearTimeout(timeoutID);`
+  - 示例：
+    ```javascript
+    const timeoutID = setTimeout(() => {
+      console.log('这段代码不会执行');
+    }, 1000);
+    clearTimeout(timeoutID);
+    ```
+
+---
+
+#### 定时器之setInterval/clearInterval
+
+- **`setInterval`**：用于以固定时间间隔重复执行某段代码。
+  - 语法：`const intervalID = setInterval(callback, delay, ...args);`
+    - `callback`：每隔 `delay` 毫秒执行的函数。
+    - `delay`：时间间隔（毫秒）。
+    - `...args`：传递给 `callback` 的参数。
+  - 返回值：`intervalID`，可用于清除定时器。
+  - 示例：
+    ```javascript
+    const intervalID = setInterval(() => {
+      console.log('每隔 1 秒执行一次');
+    }, 1000);
+    ```
+
+- **`clearInterval`**：用于取消由 `setInterval` 设置的定时器。
+  - 语法：`clearInterval(intervalID);`
+  - 示例：
+    ```javascript
+    const intervalID = setInterval(() => {
+      console.log('这段代码不会重复执行');
+    }, 1000);
+    clearInterval(intervalID);
+    ```
+
+---
+
+#### 注意事项
+1. **`setTimeout` 和 `setInterval` 的最小延迟**：
+   - HTML 标准规定，最小延迟时间为 4 毫秒，但在某些浏览器中可能会更高。
+2. **避免内存泄漏**：
+   - 在组件销毁或页面卸载时，及时清除定时器。
+   - 示例：
+     ```javascript
+     const timeoutID = setTimeout(() => {
+       console.log('清理前的定时器');
+     }, 1000);
+
+     window.addEventListener('beforeunload', () => {
+       clearTimeout(timeoutID);
+     });
+     ```
+3. **嵌套 `setTimeout` 替代 `setInterval`**：
+   - 使用嵌套 `setTimeout` 可以避免 `setInterval` 的时间偏差问题。
+   - 示例：
+     ```javascript
+     function repeat() {
+       console.log('每隔 1 秒执行一次');
+       setTimeout(repeat, 1000);
+     }
+     repeat();
+     ```
 
 ## 4. 高频使用场景示例
 
