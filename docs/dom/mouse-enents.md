@@ -21,3 +21,18 @@
 # 鼠标事件对象
 
 📌 提示： MouseEvent  继承自  UIEvent  →  Event ；移动端触摸请用  TouchEvent ，鼠标事件在手机上只是模拟触发。
+
+## 常用属性
+- `event.clientX` / `event.clientY`：鼠标相对于**浏览器视口**的坐标
+- `event.pageX` / `event.pageY`：鼠标相对于**整个文档**的坐标（包含滚动距离）
+- `event.screenX` / `event.screenY`：鼠标相对于**屏幕**的坐标
+- `event.button`：按下的鼠标键（`0`：左键，`1`：中键，`2`：右键）
+- `event.buttons`：同时按下的鼠标键（按位标志，`1`：左键，`2`：右键，`4`：中键）
+- `event.relatedTarget`：与事件相关的元素（如 `mouseover` 时进入的目标元素）
+
+## 常用方法
+- `event.preventDefault()`：阻止默认行为（如右键菜单、链接跳转）
+- `event.stopPropagation()`：阻止事件冒泡
+- `event.stopImmediatePropagation()`：阻止冒泡并阻止当前元素后续事件处理
+
+> ⚠️ 注意：鼠标事件在移动端通常会被模拟为触摸事件，需使用 `TouchEvent` 处理。
