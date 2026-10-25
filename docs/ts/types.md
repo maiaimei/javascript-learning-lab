@@ -10,7 +10,7 @@ TypeScript 额外增加：
 - "unknown"：类型安全的 any，使用前必须先收窄类型
 - "void"：函数无返回值
 - "never"：永远不可能有值（如抛错函数、穷尽判断）
-- "tuple"：固定长度、固定位置的数组，如 "[string, number]"
+- "tuple"：固定长度、固定位置的数组，如 `[string, number]`
 - "enum"：枚举（数字枚举 / 字符串枚举 / const enum）
 
 ```javascript
@@ -21,12 +21,43 @@ function fail(): never {
   throw new Error("boom");
 }
 
+// 声明元组类型
 let user: [string, number] = ["Tom", 18];
+let t1: [string, boolean?]
+let t2: [number, ...string[]]
 
+// 数字枚举，有反向映射
+enum Direction {
+  Up
+  Down
+  Left
+  Right
+}
+
+enum Sex {
+  Male = 1
+  Female
+}
+
+// 字符串枚举，无反向映射
 enum Role {
   Admin = "ADMIN",
   User = "USER",
 }
+
+// 声明对象类型
+let person: {
+  name: string
+  age?: number // age 是可选的
+  [key:string]: any // 任意key
+}
+
+// 声明函数类型
+let sum: (x: number, y:number) => number
+
+// 声明数组类型
+let arr1: string[]
+let arr2: Array<string>
 ```
 
 # 二、TS 的类型组合能力（不是“运行时类型”，但是新语法）
